@@ -1,0 +1,10 @@
+{
+  "name": "beats",
+  "version": "0.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "ractive": "~0.3.6",
+    "underscore": "~1.5.2"
+  }
+}

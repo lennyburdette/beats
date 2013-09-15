@@ -1,0 +1,35 @@
+.alert {
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  @include transition(all 50ms ease-out);
+
+  &.show {
+    -webkit-animation: alert-show 2s;
+    -moz-animation:    alert-show 2s;
+    -o-animation:      alert-show 2s;
+    animation:         alert-show 2s;
+
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+  }
+}
+
+@-webkit-keyframes alert-show {
+  0%, 30%, 60%, 100%    { opacity: 0; }
+  15%, 45%, 75%, 90%    { opacity: 1; }
+}
+@-moz-keyframes alert-show {
+  0%, 30%, 60%, 100%    { opacity: 0; }
+  15%, 45%, 75%, 90%    { opacity: 1; }
+}
+@-o-keyframes alert-show {
+  0%, 30%, 60%, 100%    { opacity: 0; }
+  15%, 45%, 75%, 90%    { opacity: 1; }
+}
+@keyframes alert-show {
+  0%, 30%, 60%, 100%    { opacity: 0; }
+  15%, 45%, 75%, 90%    { opacity: 1; }
+}

@@ -1,0 +1,26 @@
+.scrubber {
+  cursor: ns-resize;
+}
+
+#meters {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.meter {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  @include transition(all 50ms linear);
+}
+
+#progress {
+  right: 0;
+}
+
+#playhead {
+  left: 0;
+}

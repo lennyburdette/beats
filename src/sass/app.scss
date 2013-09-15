@@ -1,0 +1,43 @@
+@import "base";
+@import "type";
+@import "colors";
+@import "modules/sidebar";
+@import "modules/controls";
+@import "modules/alerts";
+
+.wrap {
+  background: url("../images/texture.jpg") 50% 50%;
+  background-size: cover;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#controls, #intro, #playlist, #ui {
+  @include transition(all 250ms ease-out);
+}
+
+.showing-intro {
+  #controls { opacity: 0; }
+  #intro { opacity: 1; }
+}
+
+.showing-menu {
+  #playlist { @include transform(translate3d(0, 0, 0)); }
+  #ui { @include transform(translate3d(320px, 0, 0)); }
+  #controls { opacity: 0.3; }
+}
+
+.showing-menu.showing-intro {
+  #controls { opacity: 0; }
+}
+
+#intro {
+  opacity: 0;
+}
+

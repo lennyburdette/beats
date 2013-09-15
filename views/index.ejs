@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>beats</title>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:800italic,800" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/stylesheets/app.css">
+</head>
+<body data-room="<%= room %>">
+
+  <div id="app"></div>
+
+  <script type="text/x-ractive" id="tmplPlayer">
+  <div class="wrap screen {{ color }} {{#showingMenu}}showing-menu{{/showingMenu}} {{#showingIntro}}showing-intro{{/showingIntro}}">
+    <div id="meters">
+      <div class="meter" id="progress" style="width: {{ 100 - amountLoaded * 100 }}%"></div>
+      <div class="meter" id="playhead" style="width: {{ timePercent * 100 }}%"></div>
+    </div>
+
+    <aside id="playlist" class="sidebar">
+      <h2>Tracks</h2>
+      <form action="#">
+        <input type="text" value="{{ searchPattern }}">
+      </form>
+      <div class="clip">
+        <ul>
+        {{#tracks:index}}
+        {{# filter((.), searchPattern) }}
+          <li>
+            <a href="#" data-track-index="{{ index }}" class="track" on-click="playlistTrackSelected">
+              <h3>{{ artist }}</h3>
+              <p>{{ title }}</p>
+            </a>
+          </li>
+        {{/ end of search filter }}
+        {{/tracks}}
+        </ul>
+      </div>
+    </aside>
+
+    <main id="ui">
+      <div id="intro" class="screen">
+        <p class="text text-words">{{{ wrapWords('span', 'Select a track') }}}</p>
+        <p class="text text-words">{{{ wrapWords('span', 'Get to know someone') }}}</p>
+      </div>
+      <div id="controls" class="screen">
+        <p class="text">
+          {{#paused}}
+          <a href="#" class="btn{{^canPlay}} disabled{{/canPlay}}" on-click="playBtnPressed">Play</a>
+          {{/paused}}
+          {{^paused}}
+          <a href="#" class="btn" on-click="pauseBtnPressed">Pause</a>
+          {{/paused}}
+
+          <a href="#" class="btn scrubber" id="time">{{ formatTime(currentTime) }}</a>
+
+          {{#(volume > 0)}}
+          <a href="#" class="btn" on-click="muteBtnPressed"><i class="glyphicon glyphicon-volume-up"></i></a>
+          {{/(volume > 0)}}
+          {{#(volume == 0)}}
+          <a href="#" class="btn" on-click="unmuteBtnPressed"><i class="glyphicon glyphicon-volume-off"></i></a>
+          {{/(volume == 0)}}
+        </p>
+
+        <p class="text text-words">{{{ wrapWords('span', artist) }}}</p>
+        <p class="text text-words">{{{ wrapWords('span', title) }}}</p>
+
+        {{#roomFilled}}
+        <p class="text">
+          <a href="#" class="btn" on-click="loveBtnPressed">Love It <i class="glyphicon glyphicon-heart"></i></a>
+          <a href="#" class="btn" on-click="skipBtnPressed">Skip It <i class="glyphicon glyphicon-remove"></i></a>
+        </p>
+        {{/roomFilled}}
+        {{^roomFilled}}
+        <p class="text">
+          <span>Invite:</span>
+          <span class="two-lines">
+            <span class="title">Copy and Paste</span>
+            <input value="{{ urlFor() }}">
+          </span>
+        </p>
+        {{/roomFilled}}
+      </div>
+    </main>
+  </div>
+  </script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/javascript/app.min.js"></script>
+
+</body>
+</html>

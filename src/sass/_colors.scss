@@ -1,0 +1,60 @@
+@mixin everything($color, $dark) {
+  #meters {
+    background: rgba($color, 0.2);
+  }
+
+  #progress {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  #playhead {
+    background: rgba($dark, 0.2);
+  }
+
+  .btn,
+  .text span,
+  .text-words:before,
+  .text span.two-lines .title {
+    background: $dark;
+  }
+
+  .text span.two-lines {
+    background: none;
+  }
+
+  .sidebar {
+    background: $dark;
+
+    a:hover {
+      background: lighten($dark, 15%);
+    }
+  }
+
+
+
+  .alert {
+    background: rgba($color, 0.8);
+
+    .glyphicon {
+      color: rgba(lighten($color, 50%), 0.9);
+    }
+  }
+}
+
+.red {
+  $color: #ff2a55;
+  $dark: #1e040a;
+  @include everything($color, $dark);
+}
+
+.blue {
+  $color: #0099CC;
+  $dark: darken($color, 50%);
+  @include everything($color, $dark);
+}
+
+.green {
+  $color: #54CE93;
+  $dark: darken($color, 50%);
+  @include everything($color, $dark);
+}

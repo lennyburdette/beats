@@ -1,0 +1,65 @@
+.sidebar {
+  width: 320px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  z-index: 10;
+  padding: 16px 0;
+  overflow: hidden;
+
+  @include transform(translate3d(-100%, 0, 0));
+
+  h2 {
+    margin: 0 16px;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  form {
+    padding: 0 16px;
+  }
+
+  input {
+    font-size: 24px;
+    border-radius: 24px;
+    border: 0;
+    width: 100%;
+    margin: 16px 0;
+    padding: 1px 12px;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 8px 8px;
+    margin: 0 8px;
+  }
+
+  .clip {
+    position: absolute;
+    top: 112px;
+    bottom: 0;
+    width: 100%;
+    overflow: auto;
+    padding-bottom: 16px;
+  }
+
+  ul, li {
+    list-style: none outside;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 8px;
+  }
+
+  p {
+    margin: 0;
+  }
+}

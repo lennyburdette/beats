@@ -45,7 +45,7 @@ var Mediator = function () {
   });
 
   socket.on('feedback', function (data) {
-    Alert.flash(data.type);
+    Alert.flash(data.type, data.color);
   });
 
   socket.on('playTrack', function (data) {
@@ -79,7 +79,7 @@ var Mediator = function () {
     },
 
     sendFeedback : function (type) {
-      socket.emit('feedback', { type: type });
+      socket.emit('feedback', { type: type, color: ui.get('color') });
     }
   };
 };

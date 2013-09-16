@@ -26,30 +26,26 @@ var Alert = (function () {
     love: 'heart',
     skip: 'remove'
   };
-  var cache = {};
-  function create (type) {
-    if (cache[type]) return cache[type];
 
+  function create (type) {
     var frag = document.createElement('div');
     frag.innerHTML = '<div class="alert screen ' + type + '"><i class="glyphicon glyphicon-' + iconMap[type] + '"></i></div>';
     var el = frag.firstChild;
 
     el.addEventListener(transitionEnd, function () {
-      this.classList.remove('show');
       this.parentNode.removeChild(this);
     });
 
     frag = null;
-    cache[type] = el;
     return el;
   }
 
   return {
-    flash : function (which) {
+    flash : function (which, color) {
       var el = create(which);
       setTypeSize(el);
-      document.querySelector('.wrap').appendChild(el);
-      el.classList.add('show');
+      document.body.appendChild(el);
+      el.className += " show " + color;
     }
   };
 }());

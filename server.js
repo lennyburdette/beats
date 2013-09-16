@@ -29,12 +29,16 @@ io.sockets.on('connection', function (socket) {
     switch (io.sockets.clients(data.room).length) {
       case 0:
         socket.join(data.room);
+        socket.set('color', data.color);
         socket.emit('roomJoined', { invited: false, color: data.color });
       break;
       case 1:
-        socket.join(data.room);
-        socket.emit('roomJoined', { invited: true, notColor: data.color });
-        socket.broadcast.to(data.room).emit('inviteAccepted');
+        var other = io.sockets.clients(data.room)[0];
+        other.get('color', function (err, color) {
+          socket.join(data.room);
+          socket.emit('roomJoined', { invited: true, notColor: color });
+          socket.broadcast.to(data.room).emit('inviteAccepted');
+        });
       break;
       default:
         socket.emit('roomDenied');

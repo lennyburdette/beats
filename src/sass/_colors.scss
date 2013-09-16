@@ -30,13 +30,11 @@
     }
   }
 
-
-
-  .alert {
+  &.alert {
     background: rgba($color, 0.8);
 
     .glyphicon {
-      color: rgba(lighten($color, 50%), 0.9);
+      color: rgba(lighten($color, 50%), 0.8);
     }
   }
 }

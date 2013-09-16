@@ -48,15 +48,15 @@ var UI = function (data) {
 
   ui.on("loveBtnPressed", function (e) {
     e.original.preventDefault();
-    mediator.sendFeedback('love');
+    mediator.sendFeedback("love");
   });
 
   ui.on("skipBtnPressed", function (e) {
     e.original.preventDefault();
-    mediator.sendFeedback('skip');
+    mediator.sendFeedback("skip");
     audio.pause();
     mediator.pause();
-    ui.set('showingMenu', true);
+    ui.set("showingMenu", true);
   });
 
   ui.on("playlistTrackSelected", function (event) {
@@ -72,6 +72,10 @@ var UI = function (data) {
     });
 
     mediator.playTrack(event.index.index);
+  });
+
+  ui.observe("color", function (value) {
+    if (value) document.body.className = value;
   });
 
   return ui;

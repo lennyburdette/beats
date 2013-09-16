@@ -1,9 +1,9 @@
 var app = {
-  colors: ['red', 'green', 'blue']
+  colors: ["red", "green", "blue"]
 };
 app.data = {
-  artist: '',
-  title: '',
+  artist: "",
+  title: "",
   duration: 0,
   currentTime: 0,
   timePercent: 0,
@@ -11,6 +11,7 @@ app.data = {
   volume: 1,
   canPlay: false,
   paused: true,
+  queueing: false,
   color: null,
 
   showingMenu: false,
@@ -31,5 +32,5 @@ audio.subscribe(title);
 
 Scrubber(document.getElementById("time")).subscribe(function (amount) {
   audio.seekBy(amount);
-  mediator.seek(ui.get('currentTime'));
+  mediator.seek(ui.get("currentTime"));
 });

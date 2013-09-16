@@ -2,12 +2,15 @@ var AudioFactory = function () {
 
   var audio = new Audio();
   audio.preload = "auto";
-  var codec = _.find(['mp3', 'ogg'], function (type) {
-    return audio.canPlayType('audio/' + type) !== "";
+  var codec = _.find(["mp3", "ogg"], function (type) {
+    return audio.canPlayType("audio/" + type) !== "";
   });
 
   audio.addEventListener("canplay", function () {
-    broadcast(setter("canPlay", true));
+    broadcast(setter({
+      canPlay: true,
+      queueing: false
+    }));
   }, false);
 
   audio.addEventListener("durationchange", function () {
@@ -67,10 +70,12 @@ var AudioFactory = function () {
 
   return {
     load : function (track) {
-      broadcast(setter("canPlay", false));
+      broadcast(setter(_.extend({}, track, {
+        canPlay: false,
+        queueing: true
+      })));
       audio.src = track[codec];
       audio.load();
-      broadcast(setter(track));
     },
     play : function () {
       audio.play();

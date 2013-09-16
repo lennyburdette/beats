@@ -24,3 +24,23 @@
 #playhead {
   left: 0;
 }
+
+@-webkit-keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+@-moz-keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+@-o-keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+@keyframes progress-bar-stripes {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}

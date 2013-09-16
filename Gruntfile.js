@@ -31,6 +31,7 @@ module.exports = function(grunt) {
           'src/js/title.js',
           'src/js/mediator.js',
           'src/js/alert.js',
+          'src/js/colophon.js',
           'src/js/tracks.js',
           'src/js/app.js'
         ],

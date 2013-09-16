@@ -28,7 +28,7 @@ var Tracks = (function () {
           mp3: store + file,
           ogg: store + file.replace(".mp3", ".ogg"),
           artist: parts[0],
-          title: parts[1].replace(".mp3", '')
+          title: parts[1].replace(".mp3", "")
         };
     }),
     get : function (i) {

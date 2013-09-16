@@ -11,9 +11,9 @@
   <div id="app"></div>
 
   <script type="text/x-ractive" id="tmplPlayer">
-  <div class="wrap screen {{ color }} {{#showingMenu}}showing-menu{{/showingMenu}} {{#showingIntro}}showing-intro{{/showingIntro}}">
+  <div class="wrap screen {{#showingMenu}}showing-menu{{/showingMenu}} {{#showingIntro}}showing-intro{{/showingIntro}}">
     <div id="meters">
-      <div class="meter" id="progress" style="width: {{ 100 - amountLoaded * 100 }}%"></div>
+      <div class="meter {{#queueing}}queueing{{/queueing}}" id="progress" style="width: {{ 100 - amountLoaded * 100 }}%"></div>
       <div class="meter" id="playhead" style="width: {{ timePercent * 100 }}%"></div>
     </div>
 
@@ -84,6 +84,51 @@
     </main>
   </div>
   </script>
+
+  <a href="https://github.com/lennyburdette/beats" class="btn-colophon">?</a>
+
+  <div class="colophon screen">
+    <div class="colophon-content">
+      <h3>What is this?</h3>
+
+      <p>A quick hack by <a href="https://github.com/lennyburdette">Lenny
+      Burdette</a>. Choose a song to listen to and share this app with a friend
+      so they can listen along anywhere in the world. Tell them you love a song
+      (you'll see a flashing heart when they love it.)</p>
+
+      <h3>What’s it made of?</h3>
+
+      <ul>
+        <li>
+          Backend:
+          <a href="http://nodejs.org">Node</a> +
+          <a href="http://expressjs.com/">Express</a> +
+          <a href="http://socket.io/">Socket.IO</a> +
+          <a href="http://embeddedjs.com">ejs</a>
+        </li>
+        <li>
+          Frontend:
+          <a href="http://www.ractivejs.org">Ractive.js</a> +
+          <a href="http://underscorejs.org">Underscore</a> +
+          <a href="http://compass-style.org">Compass</a>
+        </li>
+        <li>
+          Dev:
+          <a href="http://gruntjs.com/">Grunt</a> +
+          <a href="http://bower.io">Bower</a> +
+          <a href="http://www.vagrantup.com">Vagrant</a>
+        </li>
+        <li>Deployed to: <a href="http://aws.amazon.com/opsworks/">AWS Opsworks</a></li>
+        <li>Background from <a href="http://www.icondeposit.com/design:132">icondeposit</a></li>
+        <li>Icon font from <a href="http://getbootstrap.com">bootstrap</a></li>
+        <li>Music from <a href="http://bootiemashup.com/bestofbootie2012/">bootiesf</a></li>
+      </ul>
+
+      <h3>Why doesn’t it work?</h3>
+
+      <p>I only tested it in recent versions of Chrome, Safari and Firefox, and barely tested it at that.</p>
+    </div>
+  </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="/javascript/app.min.js"></script>

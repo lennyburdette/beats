@@ -1,6 +1,6 @@
 .sidebar {
   width: 320px;
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -9,7 +9,7 @@
   padding: 16px 0;
   overflow: hidden;
 
-  @include transform(translate3d(-100%, 0, 0));
+  @include transform(translate(-100%, 0));
 
   h2 {
     margin: 0 16px;
@@ -46,6 +46,7 @@
     bottom: 0;
     width: 100%;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     padding-bottom: 16px;
   }
 

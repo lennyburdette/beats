@@ -6,9 +6,14 @@
 @import "modules/alerts";
 @import "modules/colophon";
 
-.wrap {
+html {
   background: url("../images/texture.jpg") 50% 50%;
   background-size: cover;
+  height: 100%;
+}
+
+.wrap, #ui {
+  overflow: auto;
 }
 
 .screen {
@@ -29,9 +34,9 @@
 }
 
 .showing-menu {
-  #playlist { @include transform(translate3d(0, 0, 0)); }
-  #ui { @include transform(translate3d(320px, 0, 0)); }
-  #controls { opacity: 0.3; }
+  #playlist { @include transform(translate(0, 0)); }
+  #ui { @include transform(translate(320px, 0)); overflow: hidden; }
+  #controls { opacity: 0.3; overflow: hidden; }
 }
 
 .showing-menu.showing-intro {

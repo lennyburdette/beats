@@ -20,9 +20,12 @@
 
 .colophon-content {
   background: rgba(#fff, 0.95);
-  position: relative;
+  position: absolute;
+  top: 32px;
+  bottom: 32px;
+  left: 50%;
   padding: 1px 16px 16px;
-  margin: 32px auto;
-  max-width: 480px;
+  margin: 0 0 0 -240px;
+  width: 480px;
   overflow: auto;
 }

@@ -1,5 +1,12 @@
+// Alert element
+// Usage:
+//    Alert.flash(type, color)
+// where type is "love" or "skip"
+// and color is in app.colors (red, green, or blue)
+
 var Alert = (function () {
 
+  // type size is based on the window height
   function setTypeSize (el) {
     var size = window.innerHeight * 0.9 + "px";
     _.each(el.querySelectorAll(".glyphicon"), function (el) {
@@ -8,6 +15,7 @@ var Alert = (function () {
     });
   }
 
+  // determine the proper event for when the css animation ends
   var transEndEventNames = {
     WebkitTransition: "webkitAnimationEnd",
     MozTransition:    "animationend",
@@ -27,6 +35,8 @@ var Alert = (function () {
     skip: "remove"
   };
 
+  // creates the dom node with the proper classes and content.
+  // adds an event listener to remove the node after the animation ends.
   function create (type) {
     var frag = document.createElement("div");
     frag.innerHTML = '<div class="alert screen ' + type + '"><i class="glyphicon glyphicon-' + iconMap[type] + '"></i></div>';

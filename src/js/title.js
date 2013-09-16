@@ -1,4 +1,5 @@
-var title = {
+// Change the title to reflect play state, youtube-style
+var Title = {
   paused: true,
   set: function (prop, value) {
     if (typeof value === "undefined") {

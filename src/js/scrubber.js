@@ -1,3 +1,9 @@
+// quick vertical dragging ui element
+// drag amount is based on window height
+// usage:
+//    Scrubber(domElement).subscribe(function (change) {
+//       ... do something with the change in mouse position
+//    })
 var Scrubber = function (element) {
 
   var subscribers = [];

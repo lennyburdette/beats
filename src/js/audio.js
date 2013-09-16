@@ -1,3 +1,30 @@
+/*
+
+AudioFactory module
+(I used the module pattern because I don't expect to create
+more than one so I like the code simplicity versus writing
+`this` all the time when new-able object and prototype methods.)
+
+Usage:
+
+    var audio = AudioFactory();
+    audio.subscribe({
+      set : function (dictionaryOrPropertyName, optionalValue) {
+        if (arguments.length > 1) {
+          this[dictionaryOrPropertyName] = optionalValue;
+        } else {
+          for (var prop in dictionaryOrPropertyName) {
+            this[prop] = optionalValue;
+          }
+        }
+      }
+    });
+
+Property names can be:
+    canPlay, queueing, duration, amountLoaded, currentTime, timePercent,
+    paused, ended, volume, artist, title
+
+*/
 var AudioFactory = function () {
 
   var audio = new Audio();
@@ -38,10 +65,6 @@ var AudioFactory = function () {
     broadcast(setter("paused", true));
   }, false);
 
-  audio.addEventListener("ended", function () {
-    broadcast(setter("paused", true));
-  }, false);
-
   audio.addEventListener("volumechange", function () {
     broadcast(setter("volume", this.volume));
   }, false);
@@ -74,12 +97,13 @@ var AudioFactory = function () {
 
   return {
     load : function (track) {
-      broadcast(setter(_.extend({}, track, {
+      broadcast(setter({
         canPlay: false,
         queueing: true
-      })));
+      }));
       audio.src = track[codec];
       audio.load();
+      broadcast(setter(track));
     },
     play : function () {
       audio.play();

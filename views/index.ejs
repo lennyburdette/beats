@@ -11,7 +11,7 @@
   <div id="app"></div>
 
   <script type="text/x-ractive" id="tmplPlayer">
-  <div class="wrap screen {{#showingMenu}}showing-menu{{/showingMenu}} {{#showingIntro}}showing-intro{{/showingIntro}}">
+  <div class="wrap {{#showingMenu}}showing-menu{{/showingMenu}} {{#showingIntro}}showing-intro{{/showingIntro}}">
     <div id="meters">
       <div class="meter {{#queueing}}queueing{{/queueing}}" id="progress" style="width: {{ 100 - amountLoaded * 100 }}%"></div>
       <div class="meter" id="playhead" style="width: {{ timePercent * 100 }}%"></div>
@@ -43,7 +43,7 @@
         <p class="text text-words">{{{ wrapWords('span', 'Select a track') }}}</p>
         <p class="text text-words">{{{ wrapWords('span', 'Get to know someone') }}}</p>
       </div>
-      <div id="controls" class="screen">
+      <div id="controls">
         <p class="text">
           {{#paused}}
           <a href="#" class="btn{{^canPlay}} disabled{{/canPlay}}" on-click="playBtnPressed">Play</a>
@@ -76,7 +76,7 @@
           <span>Invite:</span>
           <span class="two-lines">
             <span class="title">Copy and Paste</span>
-            <input value="{{ urlFor() }}">
+            <input value="{{ urlFor() }}" id="copyPasteField">
           </span>
         </p>
         {{/roomFilled}}

@@ -3,20 +3,27 @@ var UI = function (data) {
     el : document.getElementById("app"),
     template : document.getElementById("tmplPlayer").innerHTML,
     data: _.extend(data, {
+
+      // minutes:seconds with 0 padding for seconds
       formatTime : function (time) {
         var seconds = Math.round(time % 60);
         seconds = (seconds < 10 ? "0" : "") + seconds;
         return [Math.floor(time / 60), seconds].join(":");
       },
+      // silly function to wrap every word in a tag (like span)
       wrapWords : function (tag, string) {
-        return "<" + tag + ">" + string.split(/\s+/).join("</" + tag + "> <" + tag + ">") + "</" + tag + ">";
+        var open = "<" + tag + ">", close = "</" + tag + ">";
+        return open + string.split(/\s+/).join([close, open].join(" ")) + close;
       },
+      // this page
       urlFor : function () {
         return window.location;
       },
+      // helper for just the sync-able properties
       playerState : function () {
         return _.pick(this, "artist", "title", "currentTime", "paused", "selectedTrackIndex");
       },
+      // dumb text search for track filtering
       filter: function (item, pattern) {
         var regexp = (pattern && pattern !== "") ? (new RegExp(".*" + pattern + ".*", "i")) : /.*/i;
         return regexp.test([item.title, item.artist].join(" "));
@@ -24,6 +31,8 @@ var UI = function (data) {
     })
   });
 
+  // some ui events send messages to the other party (play/pause),
+  // some don't (mute)
   ui.on("playBtnPressed", function (e) {
     e.original.preventDefault();
     audio.play();
@@ -78,7 +87,7 @@ var UI = function (data) {
     if (value) document.body.className = value;
   });
 
-  ui.observe("ended", function (value) {
+  ui.observe("ended", function (value, other) {
     if (value) {
       var nextTrackIndex = Tracks.nextIndex(ui.get('selectedTrackIndex'));
       var nextTrack = Tracks.get(nextTrackIndex);
@@ -91,7 +100,21 @@ var UI = function (data) {
       });
 
       mediator.playTrack(nextTrackIndex);
+
+      // next event loop, otherwise the observer gets confused
+      setTimeout(function () {
+        ui.set('ended', false);
+      }, 0);
     }
+  });
+
+  // highlight the field contents with focused
+  var copyPasteField = document.getElementById("copyPasteField");
+  copyPasteField.addEventListener("focus", function () {
+    this.select();
+  });
+  copyPasteField.addEventListener("mouseup", function (e) {
+    e.preventDefault();
   });
 
   return ui;

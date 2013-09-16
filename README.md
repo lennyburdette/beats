@@ -1,8 +1,6 @@
 beats hack
 
-1. play next song in playlist after track ends
 1. mobile layout
-1. clean up '/"
 1. audio file error handling
 1. keyboard controls
 

@@ -46,6 +46,10 @@ var AudioFactory = function () {
     broadcast(setter("volume", this.volume));
   }, false);
 
+  audio.addEventListener("ended", function () {
+    broadcast(setter("ended", true));
+  }, false);
+
   var subscribers = [];
   function broadcast (func) {
     for (var i = 0, l = subscribers.length; i < l; i++) {

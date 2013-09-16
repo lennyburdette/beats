@@ -78,5 +78,21 @@ var UI = function (data) {
     if (value) document.body.className = value;
   });
 
+  ui.observe("ended", function (value) {
+    if (value) {
+      var nextTrackIndex = Tracks.nextIndex(ui.get('selectedTrackIndex'));
+      var nextTrack = Tracks.get(nextTrackIndex);
+
+      audio.load(nextTrack);
+      audio.play();
+
+      ui.set({
+        selectedTrackIndex: nextTrackIndex
+      });
+
+      mediator.playTrack(nextTrackIndex);
+    }
+  });
+
   return ui;
 };

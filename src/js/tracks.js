@@ -33,6 +33,9 @@ var Tracks = (function () {
     }),
     get : function (i) {
       return this.all[i];
+    },
+    nextIndex : function (after) {
+      return after + 1 >= this.all.length ? 0 : after + 1;
     }
   };
 

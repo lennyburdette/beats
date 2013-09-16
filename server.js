@@ -53,7 +53,10 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('disconnect', function () {
-    socket.broadcast.to(getRoom(socket)).emit('roomLeft');
+    var room = getRoom(socket);
+    if (room) {
+      socket.broadcast.to(getRoom(socket)).emit('roomLeft');
+    }
   });
 
 });

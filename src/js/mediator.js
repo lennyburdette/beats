@@ -26,13 +26,13 @@ var Mediator = function () {
   });
 
   socket.on("roomDenied", function (data) {
-    console.log("roomDenied", arguments);
+    window.location = "/";
   });
 
   socket.on("sync", function (state) {
     ui.set(state);
     audio.load(Tracks.get(state.selectedTrackIndex));
-    audio.play();
+    if (! state.paused) audio.play();
     audio.seek(state.currentTime);
     ui.set({
       showingIntro: false,
